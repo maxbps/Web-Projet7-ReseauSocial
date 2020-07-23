@@ -1,0 +1,11 @@
+INSERT INTO public.users    	
+    	(user_email,  user_name, user_psw, user_picture)
+    	
+ VALUES 
+    	('utilisateur1@email.com', 'utilisateur1', 'utilisateur1', 'empty.jpg'),
+	('utilisateur2@email.com', 'utilisateur2', 'utilisateur2', 'empty.jpg'),
+	('utilisateur3@email.com', 'utilisateur3', 'utilisateur3', 'empty.jpg'),
+	('utilisateur4@email.com', 'utilisateur4', 'utilisateur4', 'empty.jpg'),
+	('utilisateur5@email.com', 'utilisateur5', 'utilisateur5', 'empty.jpg')
+	
+;
