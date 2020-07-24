@@ -1,18 +1,20 @@
 import React from 'react'
 import FilmItem from './FilmItem'
 import films from '../Helpers/filmData'
-import { StyleSheet, View, Button, TextInput, Image, FlatList } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Button, TextInput, Image, FlatList } from 'react-native'
 
 class PostView extends React.Component {
     render() {
         return (
-            <View>
-                <FlatList
-                    data={films}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => <FilmItem film={item} />}
-                />
-            </View>
+            <SafeAreaView>
+                <View>
+                    <FlatList
+                        data={films}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => <FilmItem film={item} />}
+                    />
+                </View>
+            </SafeAreaView>
         )
     }
 }

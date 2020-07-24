@@ -1,14 +1,12 @@
 import React from 'react';
 import LoginView from './Components/LoginView'
-import RegisterView from './Components/RegisterView'
+import SignupView from './Components/SignupView'
 import PostView from './Components/PostView'
-import { SafeAreaView } from 'react-native'
+
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <PostView />
-    </SafeAreaView>
-  );
+    <SignupView />
+  )
 }
 
