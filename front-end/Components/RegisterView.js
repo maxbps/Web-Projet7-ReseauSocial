@@ -7,8 +7,8 @@ class RegisterView extends React.Component {
             <View style={styles.view}>
                 <Image style={styles.image} source={require('../assets/icon.png')} />
                 <TextInput style={styles.textInput} placeholder='email' />
-                <TextInput style={styles.textInput} placeholder='Password' />
-                <TextInput style={styles.textInput} placeholder='Confirm password' />
+                <TextInput style={styles.textInput} placeholder='name' />
+                <TextInput style={styles.textInput} placeholder='confirm password' />
                 <Button color="pink" style={styles.button} title='Register' onPress={() => { }} />
             </View>
 
