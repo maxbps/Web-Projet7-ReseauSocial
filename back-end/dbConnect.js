@@ -16,5 +16,4 @@ dbConnect.connect((err) => {
         console.log("Connection to SQLDATABASE failed...")
     }
 })
-
 module.exports = dbConnect;

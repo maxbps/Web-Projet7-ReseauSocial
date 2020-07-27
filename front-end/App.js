@@ -6,7 +6,7 @@ import PostView from './Components/PostView'
 
 export default function App() {
   return (
-    <SignupView />
+    <LoginView />
   )
 }
 

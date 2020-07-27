@@ -1,14 +1,46 @@
 import React from 'react'
+import axios from 'axios'
 import { StyleSheet, View, Button, TextInput, Image } from 'react-native'
 
 class LoginView extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            psw: ''
+        }
+    }
+
+    setEmail(email) {
+        this.setState({ email })
+    }
+    setPsw(psw) {
+        this.setState({ psw })
+    }
+
+    loginButton() {
+        axios.post("http://localhost:4000/users/login", {
+            email: this.state.email,
+            psw: this.state.psw,
+        })
+            .then(function (reponse) {
+                console.log(reponse)
+            })
+            .catch(function (erreur) {
+                console.log(erreur)
+
+            })
+
+    }
+
     render() {
         return (
             <View style={styles.view}>
                 <Image style={styles.image} source={require('../assets/icon.png')} />
-                <TextInput style={styles.textInput} placeholder='email' />
-                <TextInput style={styles.textInput} placeholder='Password' />
-                <Button color="pink" style={styles.button} title='Login' onPress={() => { }} />
+                <TextInput style={styles.textInput} placeholder='email' onChangeText={(text) => this.setEmail(text)} value={this.state.email} />
+                <TextInput style={styles.textInput} placeholder='Password' onChangeText={(text) => this.setPsw(text)} value={this.state.psw} />
+                <Button color="pink" style={styles.button} title='Login' onPress={() => this.loginButton()} />
             </View>
 
         )

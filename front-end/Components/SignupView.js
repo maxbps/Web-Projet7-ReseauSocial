@@ -32,16 +32,17 @@ class SignupView extends React.Component {
     signupButton() {
         //this.checkInputs(this.state.email, this.state.name, this.state.psw)
         axios.post("http://localhost:4000/users/signup", {
-            email: 'utilisateur21@email',
-            name: 'utilisateur21',
-            psw: 'utilisateur21',
-            picture: 'cest un essaie'
+            email: this.state.email,
+            name: this.state.name,
+            psw: this.state.psw,
+            picture: 'ca fonctionne !'
         })
             .then(function (reponse) {
                 console.log(reponse)
             })
             .catch(function (erreur) {
                 console.log(erreur)
+
             })
 
     }
