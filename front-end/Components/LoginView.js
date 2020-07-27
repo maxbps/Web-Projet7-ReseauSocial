@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import { StyleSheet, View, Button, TextInput, Image } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 class LoginView extends React.Component {
 
@@ -34,6 +37,10 @@ class LoginView extends React.Component {
 
     }
 
+    goToSignupView() {
+        navigation.navigate('RegisterView')
+    }
+
     render() {
         return (
             <View style={styles.view}>
@@ -41,6 +48,7 @@ class LoginView extends React.Component {
                 <TextInput style={styles.textInput} placeholder='email' onChangeText={(text) => this.setEmail(text)} value={this.state.email} />
                 <TextInput style={styles.textInput} placeholder='Password' onChangeText={(text) => this.setPsw(text)} value={this.state.psw} />
                 <Button color="pink" style={styles.button} title='Login' onPress={() => this.loginButton()} />
+                <Button color="pink" style={styles.button} title='Or you can register here' onPress={() => this.props.navigation.navigate('Sign Up')} />
             </View>
 
         )
@@ -52,6 +60,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: 'center',
+        backgroundColor: '#fff',
 
     },
     image: {
