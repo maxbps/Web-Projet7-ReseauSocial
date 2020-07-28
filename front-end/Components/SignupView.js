@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { StyleSheet, View, Button, TextInput, Image } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 class SignupView extends React.Component {
 
@@ -13,6 +15,7 @@ class SignupView extends React.Component {
         }
     }
 
+    // To get the inputs
     setEmail(email) {
         this.setState({ email })
     }
@@ -22,29 +25,42 @@ class SignupView extends React.Component {
     setPsw(psw) {
         this.setState({ psw })
     }
-    checkInputs(email, name, psw) {
-        if (email != '' && name != '' && psw != '') {
-            alert("succes")
-        } else {
-            alert("pb avec les input")
-        }
-    }
+
     signupButton() {
-        //this.checkInputs(this.state.email, this.state.name, this.state.psw)
-        axios.post("http://localhost:4000/users/signup", {
-            email: this.state.email,
-            name: this.state.name,
-            psw: this.state.psw,
-            picture: 'ca fonctionne !'
-        })
-            .then(function (reponse) {
-                console.log(reponse)
-            })
-            .catch(function (erreur) {
-                console.log(erreur)
 
-            })
+        // Creation of regex
+        const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+        const nameRegex = /^[a-zA-Z0-9 -]{3,16}$/
+        const pswRegex = /^[a-zA-Z0-9-]{6,32}$/
 
+        // We check the inputs and we force the right format 
+        if (!emailRegex.test(this.state.email)) {
+            alert('Email is not to the good format')
+        } else if (!nameRegex.test(this.state.name)) {
+            alert('Name is not to the good format')
+        } else if (!pswRegex.test(this.state.psw)) {
+            alert('Please choose a stronger password')
+        } else {
+
+            //here is the request
+            axios.post("http://localhost:4000/users/signup", {
+                email: this.state.email,
+                name: this.state.name,
+                psw: this.state.psw,
+                picture: 'ca fonctionne!'
+            })
+                .then(function (response) {
+                    if (response.status == 200) {
+                        alert('succesfuly added you account')
+                    } else {
+                        console.log("problem with connexion")
+                    }
+                })
+                .catch(function (erreur) {
+                    console.log(erreur)
+
+                })
+        }
     }
 
 
@@ -52,9 +68,9 @@ class SignupView extends React.Component {
         return (
             <View style={styles.view}>
                 <Image style={styles.image} source={require('../assets/icon.png')} />
-                <TextInput style={styles.textInput} placeholder='email' onChangeText={(text) => this.setEmail(text)} value={this.state.email} />
-                <TextInput style={styles.textInput} placeholder='name' onChangeText={(text) => this.setName(text)} value={this.state.name} />
-                <TextInput style={styles.textInput} placeholder='password' onChangeText={(text) => this.setPsw(text)} value={this.state.psw} />
+                <TextInput style={styles.textInput} placeholder='email' autoCapitalize='none' onChangeText={(text) => this.setEmail(text)} value={this.state.email} />
+                <TextInput style={styles.textInput} placeholder='name' autoCapitalize='none' onChangeText={(text) => this.setName(text)} value={this.state.name} />
+                <TextInput style={styles.textInput} placeholder='password' secureTextEntry={true} autoCapitalize='none' onChangeText={(text) => this.setPsw(text)} value={this.state.psw} />
                 <Button color="pink" style={styles.button} title='Signup' onPress={() => this.signupButton()} />
             </View>
 

@@ -1,18 +1,26 @@
 import React from 'react'
 import FilmItem from './FilmItem'
 import films from '../Helpers/filmData'
-import { StyleSheet, SafeAreaView, View, Button, TextInput, Image, FlatList } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Button, TextInput, Image, FlatList, Text } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 class PostView extends React.Component {
     render() {
         return (
             <SafeAreaView>
                 <View>
+                    <View style={styles.hView}>
+                        <Button color="pink" style={styles.button} title='Logout' onPress={() => this.props.navigation.navigate('Sign In')} />
+                        <Button color="pink" style={styles.button} title='News Feed' />
+                        <Button color="pink" style={styles.button} title='New Post' onPress={() => this.props.navigation.navigate('Create post')} />
+                    </View>
                     <FlatList
                         data={films}
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => <FilmItem film={item} />}
                     />
+                    <Text>rhfoevevietlsnrhrhtytytyh(her</Text>
                 </View>
             </SafeAreaView>
         )
@@ -20,27 +28,11 @@ class PostView extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    view: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: 'center',
+    hView: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
 
-    },
-    image: {
-        width: 200,
-        height: 200,
-    },
-    textInput: {
-        borderWidth: 2,
-        margin: 30,
-        padding: 10,
-        borderRadius: 20,
-        borderColor: 'pink',
-        width: 300,
-    },
-    button: {
-        color: 'pink',
-    }
 })
 
 export default PostView

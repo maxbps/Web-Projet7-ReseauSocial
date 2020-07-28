@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
-var mysql = require('mysql');
-const dbConnect = require("../dbConnect");
+var mysql = require('mysql')
+var jwt = require('jsonwebtoken')
+const dbConnect = require("../dbConnect")
 
 exports.getAllUsers = (req, res, next) => {
     var db = dbConnect
@@ -44,15 +45,20 @@ exports.login = (req, res, next) => {
             throw err
             res.status(401).json({ error: 'Utilisateur non trouvé !' })
         } else {
-            console.log(result[0].user_psw)
+            console.log(result[0].user_name)
             bcrypt.compare(psw, result[0].user_psw)
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Mot de passe incorrect !' })
                     }
-                    console.log("ok")
+                    res.status(200).json({
+                        user_name: result[0].user_name,
+                        token: jwt.sign({ user_email: result[0].user_email },
+                            'RANDOM_TOKEN_SECRET', { expiresIn: '24h' }
+                        )
+                    })
                 })
-                .catch(error => res.status(500).json({ error: "erruer 500" }))
+                .catch(error => res.status(500).json({ error: "erreur 500" }))
         }
     })
 }
