@@ -1,18 +1,18 @@
- 
 CREATE TABLE public.Users (
-                user_email VARCHAR NOT NULL,
-                user_name VARCHAR NOT NULL,
-                user_psw VARCHAR NOT NULL,
-                user_picture VARCHAR NOT NULL,
+                user_email VARCHAR(64) NOT NULL,
+                user_name VARCHAR(64) NOT NULL,
+                user_psw VARCHAR(64) NOT NULL,
+                user_picture VARCHAR(256) NOT NULL,
                 PRIMARY KEY (user_email)
 );
  
  
 CREATE TABLE public.Posts (
                 post_id INT AUTO_INCREMENT NOT NULL,
-                user_email VARCHAR NOT NULL,
-                post_description VARCHAR NOT NULL,
-                post_picture VARCHAR NOT NULL,
+                user_email VARCHAR(64) NOT NULL,
+				user_name VARCHAR(64) NOT NULL,
+                post_description VARCHAR(1024) NOT NULL,
+                post_picture VARCHAR(128) NOT NULL,
                 PRIMARY KEY (post_id)
 );
  

@@ -31,7 +31,7 @@ class SignupView extends React.Component {
         // Creation of regex
         const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
         const nameRegex = /^[a-zA-Z0-9 -]{3,16}$/
-        const pswRegex = /^[a-zA-Z0-9-]{6,32}$/
+        const pswRegex = /^[a-zA-Z0-9-]{5,32}$/
 
         // We check the inputs and we force the right format 
         if (!emailRegex.test(this.state.email)) {
