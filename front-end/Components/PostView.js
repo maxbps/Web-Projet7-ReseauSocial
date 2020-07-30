@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 class PostView extends React.Component {
+
     render() {
         return (
             <SafeAreaView>
