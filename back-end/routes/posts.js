@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const postCtrl = require('../controllers/posts')
-const multer = require('../middleware/multer_config')
+const auth = require('../middleware/auth')
 
 
-router.get('/', postCtrl.getAllPosts)
-router.post('/', multer, postCtrl.createPost)  // display posts
+router.get('/', auth, postCtrl.getAllPosts)
+router.post('/newpost', auth, postCtrl.createPost)  // display posts
 
 
 module.exports = router

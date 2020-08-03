@@ -31,7 +31,7 @@ class SignupView extends React.Component {
         // Creation of regex
         const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
         const nameRegex = /^[a-zA-Z0-9 -]{3,16}$/
-        const pswRegex = /^[a-zA-Z0-9-]{5,32}$/
+        const pswRegex = /^[a-zA-Z0-9-]{3,16}$/
 
         // We check the inputs and we force the right format 
         if (!emailRegex.test(this.state.email)) {
@@ -47,7 +47,6 @@ class SignupView extends React.Component {
                 email: this.state.email,
                 name: this.state.name,
                 psw: this.state.psw,
-                picture: 'ca fonctionne!'
             })
                 .then(function (response) {
                     if (response.status == 200) {
@@ -70,7 +69,7 @@ class SignupView extends React.Component {
                 <Image style={styles.image} source={require('../assets/icon.png')} />
                 <TextInput style={styles.textInput} placeholder='email' autoCapitalize='none' onChangeText={(text) => this.setEmail(text)} value={this.state.email} />
                 <TextInput style={styles.textInput} placeholder='name' autoCapitalize='none' onChangeText={(text) => this.setName(text)} value={this.state.name} />
-                <TextInput style={styles.textInput} placeholder='password' secureTextEntry={true} autoCapitalize='none' onChangeText={(text) => this.setPsw(text)} value={this.state.psw} />
+                <TextInput style={styles.textInput} placeholder='password' autoCapitalize='none' onChangeText={(text) => this.setPsw(text)} value={this.state.psw} />
                 <Button color="pink" style={styles.button} title='Signup' onPress={() => this.signupButton()} />
             </View>
 

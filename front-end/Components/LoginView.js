@@ -8,7 +8,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 class LoginView extends React.Component {
 
-
     constructor(props) {
         super(props)
         this.state = {
@@ -28,7 +27,7 @@ class LoginView extends React.Component {
     loginButton() {
         // Here a created regex
         const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
-        const pswRegex = /^[a-zA-Z0-9-]{6,32}$/
+        const pswRegex = /^[a-zA-Z0-9-]{5,32}$/
 
         // I used regex to securise the request
         if (!emailRegex.test(this.state.email)) {
@@ -48,12 +47,13 @@ class LoginView extends React.Component {
                         // just to see the information we ll send to the other view
                         console.log(response.data.token)
                         console.log(response.data.user_name)
+                        console.log(this.state.email)
                         // we navigate to an other view
                         this.props.navigation.navigate('News feed',
                             {
                                 token: response.data.token,
                                 user_name: response.data.user_name,
-                                user_email: response.data.user_email
+                                user_email: this.state.email
                             })
                     } else {
                         // status is not 200
@@ -63,10 +63,8 @@ class LoginView extends React.Component {
                 .catch((erreur) => {
                     console.log(erreur)
                 })
-
         }
     }
-
 
     render() {
         return (

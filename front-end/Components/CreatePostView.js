@@ -3,18 +3,15 @@ import axios from 'axios'
 import { StyleSheet, SafeAreaView, View, Button, TextInput, Image, FlatList, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Constants from 'expo-constants';
-import * as Permissions from 'expo-permissions';
-import * as ImagePicker from 'expo-image-picker';
-
-
 
 class CreatePostView extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             description: '',
-            image: null,
+            token: this.props.route.params.token,
+            user_name: this.props.route.params.user_name,
+            user_email: this.props.route.params.user_email
         }
     }
 
@@ -22,51 +19,22 @@ class CreatePostView extends React.Component {
         this.setState({ description })
     }
 
-    componentDidMount() {
-        this.getPermissionAsync()
-    }
-
-    getPermissionAsync = async () => {
-        if (Constants.platform.ios) {
-            const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-            if (status !== 'granted') {
-                alert('Sorry, we need camera roll permissions to make this work!')
+    postButton(token, user_name, user_email) {
+        console.log(this.state.description)
+        console.log(user_email)
+        //here is the request
+        axios.post("http://localhost:4000/posts/newpost", {
+            description: this.state.description,
+            email: user_email,
+            name: user_name,
+        }, {
+            headers: {
+                'Authorization': `token ${token}`
             }
-        }
-    }
-
-    _pickImage = async () => {
-        try {
-            let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-            });
-            if (!result.cancelled) {
-                this.setState({ image: result.uri })
-                data.append('file', {
-                    uri: result.uri,
-                    type: 'image/jpeg',
-                    filename: result.uri.substr(result.uri.lastIndexOf('/') + 1)
-                })
-
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    postButton = async (image) => {
-        let data = new FormData()
-        data.append('submit', 'ok')
-        data.append('postData', { email: 'maxime@email.fr', name: 'maxime', description: 'blbablabla' })
-        data.append('file', { type: 'image/jpg', uri: image, name: "name.jpg" })
-        console.log(data)
-        axios.post('http://localhost:4000/posts/', data)
+        })
             .then(function (response) {
                 if (response.status == 200) {
-                    alert('succesfuly added you account')
+                    alert('succesfuly added your post')
                 } else {
                     console.log("problem with connexion")
                 }
@@ -75,48 +43,23 @@ class CreatePostView extends React.Component {
                 console.log(erreur)
 
             })
-
-        // fetch("http://localhost:4000/posts/", {
-        //     method: "post",
-        //     body: data,
-        // })
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         alert('sucess')
-        //     })
-        //     .catch(err => {
-        //         console.error("error uploading", err)
-        //     })
     }
 
-
-
-
     render() {
-        let { image } = this.state;
         return (
             <SafeAreaView>
-                <View>
-                    <Button color="pink" title="Choose a picture" onPress={() => this._pickImage()} />
-                    <View style={styles.image_container}>
-                        {image && <Image source={{ uri: image }} style={{ width: "100%", height: "100%", borderRadius: 25 }} />}
-                    </View>
+                <View style={styles.container}>
                     <TextInput style={styles.textInput} placeholder='Description' multiline={true} numberOfLines={4} onChangeText={(text) => this.setDescription(text)} value={this.state.description} />
-                    <Button color="pink" title='Submit' onPress={() => this.postButton(image)} />
+                    <Button color="pink" title='Submit' onPress={() => this.postButton(this.state.token, this.state.user_name, this.state.user_email)} />
                 </View>
             </SafeAreaView>
         )
     }
 }
 
-const styles = StyleSheet.create({
 
-    image_container: {
-        justifyContent: "center",
-        alignItems: 'center',
-        marginHorizontal: 15,
-        marginVertical: 15,
-        height: 250,
+const styles = StyleSheet.create({
+    container: {
     },
     textInput: {
         borderWidth: 2,
@@ -126,9 +69,6 @@ const styles = StyleSheet.create({
         height: 200,
         borderColor: 'pink',
     },
-
-
-
 })
 
 export default CreatePostView

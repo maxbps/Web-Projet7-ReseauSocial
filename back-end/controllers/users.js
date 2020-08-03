@@ -20,10 +20,10 @@ exports.getAllUsers = (req, res, next) => {
 exports.signup = (req, res, next) => {
     const email = req.body.email
     const name = req.body.name
-    const picture = req.body.picture
+    const rank = false
     bcrypt.hash(req.body.psw, 10, function (err, hash) {
         var db = dbConnect
-        db.query('INSERT INTO Users (user_email, user_name, user_psw, user_picture) VALUES ("' + email + '", "' + name + '", "' + hash + '", "' + picture + '")', (err, results) => {
+        db.query('INSERT INTO Users (user_email, user_name, user_psw, user_isAdm) VALUES ("' + email + '", "' + name + '", "' + hash + '", ' + false + ' )', (err, results) => {
             if (err) {
                 return res.send(err)
             }

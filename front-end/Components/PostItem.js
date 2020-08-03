@@ -1,22 +1,18 @@
-// Components/FilmItem.js
 
 import React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native'
 
-class FilmItem extends React.Component {
+class PostItem extends React.Component {
     render() {
-        const film = this.props.film
+        const post = this.props.post
         return (
             <View style={styles.main_container}>
                 <View style={styles.title_container}>
                     <Image style={styles.title_image} source={require('../assets/user.png')} />
-                    <Text style={styles.title_text}>{film.title}</Text>
-                </View>
-                <View style={styles.image_container}>
-                    <Image style={{ width: "100%", height: "100%", borderRadius: 25 }} source={require('../assets/landcape.jpg')} />
+                    <Text style={styles.title_text}>{post.user_name}</Text>
                 </View>
                 <View style={styles.description_container}>
-                    <Text style={styles.description_text}>{film.overview}</Text>
+                    <Text style={styles.description_text}>{post.post_description}</Text>
                 </View>
 
             </View>
@@ -73,4 +69,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default FilmItem
+export default PostItem
