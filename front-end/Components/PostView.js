@@ -11,6 +11,7 @@ class PostView extends React.Component {
         super(props)
         this.state = {
             posts: [],
+            //this is how we get informations from LoginView 
             token: this.props.route.params.token,
             user_name: this.props.route.params.user_name,
             user_email: this.props.route.params.user_email,

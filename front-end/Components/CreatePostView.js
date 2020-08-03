@@ -20,8 +20,6 @@ class CreatePostView extends React.Component {
     }
 
     postButton(token, user_name, user_email) {
-        console.log(this.state.description)
-        console.log(user_email)
         //here is the request
         axios.post("http://localhost:4000/posts/newpost", {
             description: this.state.description,
@@ -29,6 +27,7 @@ class CreatePostView extends React.Component {
             name: user_name,
         }, {
             headers: {
+                // I had to separe it in two parts (split in back-end)
                 'Authorization': `token ${token}`
             }
         })
