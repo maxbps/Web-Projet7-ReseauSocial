@@ -1,21 +1,83 @@
 
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import axios from 'axios'
+import Swipeout from 'react-native-swipeout'
+import { StyleSheet, View, Text, Image, Button, Alert } from 'react-native'
+
+
 
 class PostItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeRowKey: null,
+        }
+    }
+
+
     render() {
         const post = this.props.post
-        return (
-            <View style={styles.main_container}>
-                <View style={styles.title_container}>
-                    <Image style={styles.title_image} source={require('../assets/user.png')} />
-                    <Text style={styles.title_text}>{post.user_name}</Text>
-                </View>
-                <View style={styles.description_container}>
-                    <Text style={styles.description_text}>{post.post_description}</Text>
-                </View>
+        const user_isAdm = this.props.user_isAdm
+        const token = this.props.token
 
-            </View>
+
+        const swipeSettings = {
+            backgroundColor: '#fff',
+            autoClose: true,
+
+            onOpen: (secId, rowIs, direction) => {
+                this.setState({ activeRowKey: post.post_id })
+                console.log(this.state.activeRowKey)
+            },
+
+            right: [
+                {
+                    onPress: () => {
+                        Alert.alert(
+                            'Alert',
+                            'Are you sure you want to delete ?',
+                            [
+                                { text: 'No', onPress: () => console.log("canceled"), style: 'cancel' },
+                                {
+                                    text: 'Yes', onPress: () => {
+                                        axios.post("http://localhost:4000/posts/deletepost", {
+                                            post_id: this.state.activeRowKey,
+                                        }, {
+                                            headers: {
+                                                // I had to separe it in two parts (split in back-end)
+                                                'Authorization': `token ${this.props.token}`
+                                            }
+                                        })
+                                    },
+                                },
+                            ]
+                        )
+                    },
+                    text: 'Delete'
+                }
+            ],
+            rowId: this.props.index,
+            sectionId: 1,
+        }
+
+
+        function deletePost() {
+            alert(user_isAdm)
+        }
+
+        return (
+            <Swipeout{...swipeSettings}>
+                <View style={styles.main_container}>
+                    <View style={styles.title_container}>
+                        <Image style={styles.title_image} source={require('../assets/user.png')} />
+                        <Text style={styles.title_text}>{post.user_name}</Text>
+                    </View>
+                    <View style={styles.description_container}>
+                        <Text style={styles.description_text}>{post.post_description}</Text>
+                    </View>
+                </View>
+            </Swipeout>
         )
     }
 }
@@ -66,7 +128,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: 'grey',
 
-    }
+    },
 })
 
 export default PostItem

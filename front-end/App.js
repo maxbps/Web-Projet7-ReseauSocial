@@ -2,6 +2,7 @@ import React from 'react';
 import LoginView from './Components/LoginView'
 import SignupView from './Components/SignupView'
 import PostView from './Components/PostView'
+import PostItem from './Components/PostItem'
 import CreatePostView from './Components/CreatePostView'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'

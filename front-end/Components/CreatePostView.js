@@ -10,6 +10,7 @@ class CreatePostView extends React.Component {
         this.state = {
             description: '',
             token: this.props.route.params.token,
+            user_isAdm: this.props.route.params.user_isAdm,
             user_name: this.props.route.params.user_name,
             user_email: this.props.route.params.user_email
         }

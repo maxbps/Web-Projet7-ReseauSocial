@@ -47,11 +47,13 @@ class LoginView extends React.Component {
                         // just to see the information we ll send to the other view
                         console.log(response.data.token)
                         console.log(response.data.user_name)
+                        console.log(response.data.user_isAdm)
                         console.log(this.state.email)
                         // we navigate to an other view
                         this.props.navigation.navigate('News feed',
                             {
                                 token: response.data.token,
+                                user_isAdm: response.data.user_isAdm,
                                 user_name: response.data.user_name,
                                 user_email: this.state.email
                             })

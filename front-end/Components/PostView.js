@@ -13,6 +13,7 @@ class PostView extends React.Component {
             posts: [],
             //this is how we get informations from LoginView 
             token: this.props.route.params.token,
+            user_isAdm: this.props.route.params.user_isAdm,
             user_name: this.props.route.params.user_name,
             user_email: this.props.route.params.user_email,
         }
@@ -28,7 +29,6 @@ class PostView extends React.Component {
 
     refreshPost() {
         this.setState({ posts: [] })
-
         var option = {
             'method': 'GET',
             'headers': {
@@ -53,18 +53,21 @@ class PostView extends React.Component {
                     <View style={styles.hView}>
                         <Button color="pink" style={styles.button} title='Logout' onPress={() => this.props.navigation.navigate('Sign In')} />
                         <Button color="pink" style={styles.button} title='Refresh' onPress={() => this.refreshPost()} />
-                        <Button color="pink" style={styles.button} title='New Post' onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_name: this.state.user_name, user_email: this.state.user_email })} />
+                        <Button color="pink" style={styles.button} title='New Post' onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_isAdm: this.state.user_isAdm, user_name: this.state.user_name, user_email: this.state.user_email })} />
                     </View>
                     <FlatList
                         data={this.state.posts}
                         keyExtractor={(item) => item.post_id.toString()}
-                        renderItem={({ item }) => <PostItem post={item} />}
+                        renderItem={({ item }) => <PostItem post={item} user_isAdm={this.state.user_isAdm} token={this.state.token} />}
                     />
                 </View>
+
             </SafeAreaView>
         )
     }
 }
+
+
 
 const styles = StyleSheet.create({
     hView: {

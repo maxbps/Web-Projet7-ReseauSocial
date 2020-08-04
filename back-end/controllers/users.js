@@ -25,12 +25,10 @@ exports.signup = (req, res, next) => {
         var db = dbConnect
         db.query('INSERT INTO Users (user_email, user_name, user_psw, user_isAdm) VALUES ("' + email + '", "' + name + '", "' + hash + '", ' + false + ' )', (err, results) => {
             if (err) {
-                return res.send(err)
+                return res.send("this email already is already use")
             }
             else {
-                return res.json({
-                    data: results
-                })
+                return res.send("successfuly added you account")
             }
         })
     })
@@ -45,13 +43,14 @@ exports.login = (req, res, next) => {
             throw err
             res.status(401).json({ error: 'Utilisateur non trouvé !' })
         } else {
-            console.log(result[0].user_name)
+            console.log(result[0].user_isAdm)
             bcrypt.compare(psw, result[0].user_psw)
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Mot de passe incorrect !' })
                     }
                     res.status(200).json({
+                        user_isAdm: result[0].user_isAdm,
                         user_name: result[0].user_name,
                         token: jwt.sign({ user_email: result[0].user_email },
                             'RANDOM_TOKEN_SECRET', { expiresIn: '24h' }

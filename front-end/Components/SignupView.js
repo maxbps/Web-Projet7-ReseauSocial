@@ -50,9 +50,9 @@ class SignupView extends React.Component {
             })
                 .then(function (response) {
                     if (response.status == 200) {
-                        alert('succesfuly added you account')
+                        alert(response.data)
                     } else {
-                        console.log("problem with connexion")
+                        alert("problem with connexion")
                     }
                 })
                 .catch(function (erreur) {

@@ -1,6 +1,0 @@
-
-//Voir contenu de la table Users
-SELECT * FROM public.Users;
-
-//Voir contenu de la table Posts	
-SELECT * FROM public.Posts;	

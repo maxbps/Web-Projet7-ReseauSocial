@@ -36,3 +36,19 @@ exports.createPost = (req, res, next) => {
         }
     })
 }
+
+exports.deletePost = (req, res, next) => {
+    const post_id = req.body.post_id
+    console.log(post_id)
+    var db = dbConnect
+    db.query('DELETE FROM public.posts WHERE post_id=' + post_id + '', (err, results) => {
+        if (err) {
+            return res.send(err)
+        }
+        else {
+            return res.json({
+                data: results
+            })
+        }
+    })
+}
