@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { StyleSheet, SafeAreaView, View, Button, TextInput, Image, FlatList, Text } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Button, TextInput, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -44,6 +44,7 @@ class CreatePostView extends React.Component {
 
             })
     }
+
 
     render() {
         return (

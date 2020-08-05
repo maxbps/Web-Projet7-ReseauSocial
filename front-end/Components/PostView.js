@@ -1,6 +1,7 @@
 import React from 'react'
 import PostItem from './PostItem'
 import axios from 'axios'
+import { IconButton, Colors } from 'react-native-paper'
 import { StyleSheet, SafeAreaView, View, Button, TextInput, Image, FlatList, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -48,12 +49,15 @@ class PostView extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
-                <View>
+            <SafeAreaView style={styles.mainContainer}>
+                <View >
                     <View style={styles.hView}>
-                        <Button color="pink" style={styles.button} title='Logout' onPress={() => this.props.navigation.navigate('Sign In')} />
+                        <IconButton icon="logout" color={Colors.pink200} size={30} onPress={() => this.props.navigation.navigate('Sign In')} />
+                        <IconButton icon="refresh" color={Colors.pink200} size={30} onPress={() => this.refreshPost()} />
+                        <IconButton icon="pencil" color={Colors.pink200} size={30} onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_isAdm: this.state.user_isAdm, user_name: this.state.user_name, user_email: this.state.user_email })} />
+                        {/* <Button color="pink" style={styles.button} title='Logout' onPress={() => this.props.navigation.navigate('Sign In')} />
                         <Button color="pink" style={styles.button} title='Refresh' onPress={() => this.refreshPost()} />
-                        <Button color="pink" style={styles.button} title='New Post' onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_isAdm: this.state.user_isAdm, user_name: this.state.user_name, user_email: this.state.user_email })} />
+                        <Button color="pink" style={styles.button} title='New Post' onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_isAdm: this.state.user_isAdm, user_name: this.state.user_name, user_email: this.state.user_email })} /> */}
                     </View>
                     <FlatList
                         data={this.state.posts}
@@ -70,6 +74,9 @@ class PostView extends React.Component {
 
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        backgroundColor: '#fff',
+    },
     hView: {
         flexDirection: 'row',
         justifyContent: 'space-around'

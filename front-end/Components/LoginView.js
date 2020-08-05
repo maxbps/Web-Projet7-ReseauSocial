@@ -25,7 +25,7 @@ class LoginView extends React.Component {
     }
 
     loginButton() {
-        // Here a created regex
+        // Here I created regex
         const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
         const pswRegex = /^[a-zA-Z0-9-]{5,32}$/
 

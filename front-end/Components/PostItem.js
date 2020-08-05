@@ -19,8 +19,7 @@ class PostItem extends React.Component {
     render() {
         const post = this.props.post
         const user_isAdm = this.props.user_isAdm
-        const token = this.props.token
-
+        const token = this.props.token // not use because i directly use this.props.token but i let him to see differents props of this component
 
         const swipeSettings = {
             backgroundColor: '#fff',
@@ -34,33 +33,37 @@ class PostItem extends React.Component {
             right: [
                 {
                     onPress: () => {
-                        Alert.alert(
-                            'Alert',
-                            'Are you sure you want to delete ?',
-                            [
-                                { text: 'No', onPress: () => console.log("canceled"), style: 'cancel' },
-                                {
-                                    text: 'Yes', onPress: () => {
-                                        axios.post("http://localhost:4000/posts/deletepost", {
-                                            post_id: this.state.activeRowKey,
-                                        }, {
-                                            headers: {
-                                                // I had to separe it in two parts (split in back-end)
-                                                'Authorization': `token ${this.props.token}`
-                                            }
-                                        })
+                        if (user_isAdm == true) {
+                            Alert.alert(
+                                'Alert',
+                                'Are you sure you want to delete ?',
+                                [
+                                    { text: 'No', onPress: () => console.log("canceled"), style: 'cancel' },
+                                    {
+                                        text: 'Yes', onPress: () => {
+                                            axios.post("http://localhost:4000/posts/deletepost", {
+                                                post_id: this.state.activeRowKey,
+                                            }, {
+                                                headers: {
+                                                    // I had to separe it in two parts (split in back-end)
+                                                    'Authorization': `token ${this.props.token}`
+                                                }
+                                            })
+                                        },
                                     },
-                                },
-                            ]
-                        )
+                                ]
+                            )
+                        } else {
+                            alert('you are not allowed to delete this post')
+                        }
                     },
                     text: 'Delete'
+
                 }
             ],
             rowId: this.props.index,
             sectionId: 1,
         }
-
 
         function deletePost() {
             alert(user_isAdm)
