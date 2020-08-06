@@ -6,7 +6,7 @@ const auth = require('../middleware/auth')
 
 router.get('/', auth, postCtrl.getAllPosts)
 router.post('/newpost', auth, postCtrl.createPost)  // display posts
-router.post('/deletepost', postCtrl.deletePost) // delete a post
+router.post('/deletepost', auth, postCtrl.deletePost) // delete a post
 
 
 module.exports = router

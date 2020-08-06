@@ -15,25 +15,29 @@ class SignupView extends React.Component {
         }
     }
 
-    // To get the inputs
+    //To modify the state of email
     setEmail(email) {
         this.setState({ email })
     }
+
+    //To modify the state of name
     setName(name) {
         this.setState({ name })
     }
+
+    //To modify the state of psw
     setPsw(psw) {
         this.setState({ psw })
     }
 
+    //Called when pressed the signup Button
     signupButton() {
-
         // Creation of regex
         const emailRegex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
         const nameRegex = /^[a-zA-Z0-9 -]{3,16}$/
         const pswRegex = /^[a-zA-Z0-9-]{3,16}$/
 
-        // We check the inputs and we force the right format 
+        // We check the inputs and we force the right format here
         if (!emailRegex.test(this.state.email)) {
             alert('Email is not to the good format')
         } else if (!nameRegex.test(this.state.name)) {
@@ -42,7 +46,7 @@ class SignupView extends React.Component {
             alert('Please choose a stronger password')
         } else {
 
-            //here is the request
+            //Here is the request
             axios.post("http://localhost:4000/users/signup", {
                 email: this.state.email,
                 name: this.state.name,
@@ -50,6 +54,7 @@ class SignupView extends React.Component {
             })
                 .then(function (response) {
                     if (response.status == 200) {
+                        //The back-end send what is show to the user
                         alert(response.data)
                     } else {
                         alert("problem with connexion")
@@ -83,7 +88,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: 'center',
         backgroundColor: '#fff'
-
     },
     image: {
         width: 200,

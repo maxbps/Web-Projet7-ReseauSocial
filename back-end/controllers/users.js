@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt')
-var mysql = require('mysql')
-var jwt = require('jsonwebtoken')
+const mysql = require('mysql')
+const jwt = require('jsonwebtoken')
 const dbConnect = require("../dbConnect")
 
 exports.getAllUsers = (req, res, next) => {
-    var db = dbConnect
+    const db = dbConnect
     db.query('SELECT * FROM Users', (err, results) => {
         if (err) {
             return res.send(err)
@@ -22,7 +22,7 @@ exports.signup = (req, res, next) => {
     const name = req.body.name
     const rank = false
     bcrypt.hash(req.body.psw, 10, function (err, hash) {
-        var db = dbConnect
+        const db = dbConnect
         db.query('INSERT INTO Users (user_email, user_name, user_psw, user_isAdm) VALUES ("' + email + '", "' + name + '", "' + hash + '", ' + false + ' )', (err, results) => {
             if (err) {
                 return res.send("this email already is already use")
@@ -37,13 +37,12 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
     const email = req.body.email
     const psw = req.body.psw
-    var db = dbConnect
+    const db = dbConnect
     db.query('SELECT * FROM public.users WHERE user_email = "' + email + '" ', (err, result) => {
         if (err) {
             throw err
             res.status(401).json({ error: 'Utilisateur non trouvé !' })
         } else {
-            console.log(result[0].user_isAdm)
             bcrypt.compare(psw, result[0].user_psw)
                 .then(valid => {
                     if (!valid) {

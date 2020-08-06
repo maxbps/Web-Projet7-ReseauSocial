@@ -15,7 +15,6 @@ class PostItem extends React.Component {
         }
     }
 
-
     render() {
         const post = this.props.post
         const user_isAdm = this.props.user_isAdm

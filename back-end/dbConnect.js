@@ -1,11 +1,12 @@
 
-const mysql = require("mysql");
+const mysql = require("mysql")
+require('dotenv').config()
 
-var dbConnect = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '64856485',
-    database: 'public'
+const dbConnect = mysql.createConnection({
+    host: process.env.HOST,
+    user: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })
 
 dbConnect.connect((err) => {
@@ -13,7 +14,7 @@ dbConnect.connect((err) => {
         console.log("Connected to SQL DATABASE !")
     }
     else {
-        console.log("Connection to SQLDATABASE failed...")
+        console.log("Failed to connect SQL DATABASE")
     }
 })
 module.exports = dbConnect;

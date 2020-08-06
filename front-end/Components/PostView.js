@@ -20,23 +20,27 @@ class PostView extends React.Component {
         }
     }
 
+    //To modify the state of posts
     setDescription(posts) {
         this.setState({ posts })
     }
 
+    //Called when component is loaded
     componentDidMount() {
         this.refreshPost()
     }
 
+    //Called when press the refresh button and when the omponent is loaded
     refreshPost() {
         this.setState({ posts: [] })
-        var option = {
+        const option = {
             'method': 'GET',
             'headers': {
                 'Authorization': `token ${this.state.token}`
             }
         }
 
+        //Request , then modify the state of posts 
         fetch('http://localhost:4000/posts', option)
             .then((response) => response.json())
             .then(data => {
@@ -55,6 +59,7 @@ class PostView extends React.Component {
                         <IconButton icon="logout" color={Colors.pink200} size={30} onPress={() => this.props.navigation.navigate('Sign In')} />
                         <IconButton icon="refresh" color={Colors.pink200} size={30} onPress={() => this.refreshPost()} />
                         <IconButton icon="pencil" color={Colors.pink200} size={30} onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_isAdm: this.state.user_isAdm, user_name: this.state.user_name, user_email: this.state.user_email })} />
+                        {/* You can change icon by text*/}
                         {/* <Button color="pink" style={styles.button} title='Logout' onPress={() => this.props.navigation.navigate('Sign In')} />
                         <Button color="pink" style={styles.button} title='Refresh' onPress={() => this.refreshPost()} />
                         <Button color="pink" style={styles.button} title='New Post' onPress={() => this.props.navigation.navigate('Create post', { token: this.state.token, user_isAdm: this.state.user_isAdm, user_name: this.state.user_name, user_email: this.state.user_email })} /> */}

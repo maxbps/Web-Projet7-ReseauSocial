@@ -45,7 +45,6 @@ class CreatePostView extends React.Component {
             })
     }
 
-
     render() {
         return (
             <SafeAreaView>
@@ -57,7 +56,6 @@ class CreatePostView extends React.Component {
         )
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
