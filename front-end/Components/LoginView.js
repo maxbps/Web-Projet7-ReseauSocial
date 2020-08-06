@@ -59,7 +59,7 @@ class LoginView extends React.Component {
                             })
                     } else {
                         // status is not 200
-                        console.log("problem with connexion")
+                        alert("problem with connexion")
                     }
                 })
                 .catch((erreur) => {

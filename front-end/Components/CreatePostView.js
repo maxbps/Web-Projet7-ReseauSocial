@@ -36,12 +36,11 @@ class CreatePostView extends React.Component {
                 if (response.status == 200) {
                     alert('succesfuly added your post')
                 } else {
-                    console.log("problem with connexion")
+                    alert("problem with connexion")
                 }
             })
             .catch(function (erreur) {
                 console.log(erreur)
-
             })
     }
 

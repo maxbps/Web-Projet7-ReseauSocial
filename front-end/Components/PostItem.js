@@ -26,7 +26,6 @@ class PostItem extends React.Component {
 
             onOpen: (secId, rowIs, direction) => {
                 this.setState({ activeRowKey: post.post_id })
-                console.log(this.state.activeRowKey)
             },
 
             right: [
@@ -62,10 +61,6 @@ class PostItem extends React.Component {
             ],
             rowId: this.props.index,
             sectionId: 1,
-        }
-
-        function deletePost() {
-            alert(user_isAdm)
         }
 
         return (
