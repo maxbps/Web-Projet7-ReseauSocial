@@ -20,11 +20,11 @@
 ## Back-end
 ### Tapez la commande `node server`
 ## Front-end
-### Tapez la commande `npm install`, puis suivez ces instructions
-### Pour lancer l'application sur simulateur:
+### Tapez la commande `npm install`, puis suivez ces instructions:
+## Pour lancer l'application sur simulateur:
 ### -iOS: Depuis votre device, après avoir installé l'application explo, lancer l'aaplication Appareil photo pour scanner le QRCode de votre terminal
 ### -Android: Depuis votre device, lancez l'application Expo. Vous devriez avoir un bouton "Scan QR Code". Cliquez sur ce bouton et scannez le QR Code affiché dans votre terminal
-### Pour lancer l'application sur votre smartphone:
+## Pour lancer l'application sur votre smartphone:
 ### -iOS : Installer la dernière version de Xcode et au moins un simulateur, lancer le simulateur, lancer expo `npm start` puis pour ouvrir l'application sur le simulateur, dans le meme terminal que celui qui à demarré expo avec la commande précédente ( un QRCode doit etre present ) taper `i`
 ### -Android : Il faut configurer l'environnement propre à Android, c'est-à-dire Python 2, un JDK(https://www.oracle.com/java/technologies/javase-downloads.html), un SDK Android et une machine virtuelle Android avec AVD. Je vous invite à vous référer à la documentation React Native et à la partie Building Projects with Native(https://reactnative.dev/docs/getting-started.html)
 
