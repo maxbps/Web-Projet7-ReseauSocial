@@ -10,7 +10,7 @@
 ### Dans MySQLworkbench, dans votre base de donnée, lancer le script situer dans /SQL/createtables afin de creer les tables users et posts qui serviront pendant l'utilisation de l'application.
 ## Back-end
 ### Dans le dossier back-end lancer la commande `npm install`
-Dans le fichier back-end/.env ajouter les données concernant votre database. Les données actuelles de ce fichier sont fausses et servent d'exemple.
+### Dans le fichier back-end/.env ajouter les données concernant votre database. Les données actuelles de ce fichier sont fausses et servent d'exemple.
 ## Front-end
 ### Dans le dossier front-end lancer la commande `npm install`
 
@@ -19,7 +19,7 @@ Dans le fichier back-end/.env ajouter les données concernant votre database. Le
 ### Assurez vous que votre base de donnée soit bien connectée
 ## Back-end
 ### Tapez la commande `node server`
-##Front-end
+## Front-end
 ### Tapez la commande `npm install`, puis suivez ces instructions
 ### Pour lancer l'application sur simulateur:
 ### -iOS: Depuis votre device, après avoir installé l'application explo, lancer l'aaplication Appareil photo pour scanner le QRCode de votre terminal
