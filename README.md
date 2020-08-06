@@ -12,15 +12,15 @@
 ### Dans le dossier back-end lancer la commande `npm install`
 Dans le fichier back-end/.env ajouter les données concernant votre database. Les données actuelles de ce fichier sont fausses et servent d'exemple.
 ## Front-end
-#### Dans le dossier front-end lancer la commande `npm install`
+### Dans le dossier front-end lancer la commande `npm install`
 
-#Procédure de lancement
-##Base de donnée
-###Assurez vous que votre base de donnée soit bien connectée
-##Back-end
-###Tapez la commande `node server`
+# Procédure de lancement
+## Base de donnée
+### Assurez vous que votre base de donnée soit bien connectée
+## Back-end
+### Tapez la commande `node server`
 ##Front-end
-###Tapez la commande `npm install`, puis suivez ces instructions
+### Tapez la commande `npm install`, puis suivez ces instructions
 ### Pour lancer l'application sur simulateur:
 ### -iOS: Depuis votre device, après avoir installé l'application explo, lancer l'aaplication Appareil photo pour scanner le QRCode de votre terminal
 ### -Android: Depuis votre device, lancez l'application Expo. Vous devriez avoir un bouton "Scan QR Code". Cliquez sur ce bouton et scannez le QR Code affiché dans votre terminal
